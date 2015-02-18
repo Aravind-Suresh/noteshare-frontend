@@ -6,14 +6,24 @@
 
 /* Global Styles */
 
+#center-info {
+    margin-top: 100px;
+    z-index: -1;
+}
+.fixed-top-nav {
+    position:fixed;
+    z-index: 1;
+}
+
 body {
     margin-top: 100px;
-    background-color: #d79a47;
+    background-color: #5cb85c;
+    font-family: 'Raleway';
 }
 
 @media(min-width:768px) {
     body {
-        margin-top: 50px;
+        margin-top: 0px;
     }
 }
 
@@ -83,6 +93,15 @@ body {
 
 .top-nav>.open>.dropdown-menu>li>a {
     white-space: normal;
+}
+
+.spanning {
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    clear: both;
+    box-sizing: border-box;
 }
 
 ul.message-dropdown {
