@@ -163,6 +163,13 @@
 	left: 5%;
 	top: 5%;
 }
+.nav-center {
+	margin-top:1.8%;
+	margin-left: 30%;
+}
+.nav-gly-search {
+	left: 10% !important;
+}
 </style>
 
 <html ng-app="">
@@ -180,7 +187,7 @@
 		</title>
 	</head>
 
-	<nav class="fixed-top-nav navbar navbar-default navbar-schema col-md-12">
+	<!-- <nav class="fixed-top-nav navbar navbar-default navbar-schema col-md-12">
 		<div class="container-fluid">
 			<a href="#"><img class="navbar-logo" src="logo.png"></img></a>
 			
@@ -194,7 +201,36 @@
 				</ul>
 			</div>
 		</div>
+	</nav> -->
+
+	<nav class="fixed-top-nav navbar navbar-default navbar-schema col-md-12">
+		<div class="container-fluid">
+			<a href="#"><img class="navbar-logo" src="logo.png"></img></a>			
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav row">
+					<div class="col-lg-2"></div>
+					<div class="col-lg-6 nopadding">
+						<li>
+							<div class="nav-center">
+								<div class="input-group">
+									<input placeholder="Search for notes.." id="filter-by" class="form-control input" style="line-height:2;"/>
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button">Go!
+										</button>
+									</span>
+								</div>
+							</div>
+						</li>
+					</div>
+					<div class="col-lg-2 nopadding"></div>
+						<li class="nav-button"><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp&nbsp</a></li>
+						<li class="nav-button"><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp&nbsp</a></li>
+				</ul>
+			</div>
+		</div>
 	</nav>
+
+
 
 	<div class="container-fluid">
 		<div class="row" style="height:20%">
