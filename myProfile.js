@@ -1,6 +1,6 @@
 function myProfile($scope) {
 	// TODO get info from backend and populate user class object
-	$scope.notificationCount = 1;
+	$scope.notificationCount = 7;
 	console.log('started');
 	$scope.user = {
 		"userName":"Aravind Shankar",
@@ -11,6 +11,11 @@ function myProfile($scope) {
 		"followingCount":"0"
 	};
 	$scope.user.notifications=[];
+
+	for(var i=1;i<=$scope.notificationCount;i++) {
+		$scope.user.notifications.push({"textHeading":"New notification","textDescription":"Description about the notification"});
+	}
+
 	$scope.uploadNotes = function() {
 		console.log('Notes uploaded');
 	}
@@ -29,15 +34,13 @@ function myProfile($scope) {
 	$scope.updateNotificationCounter = function() {
 		console.log('called update function');
 		$('#notificationCount').css({opacity:0});
-		$scope.notificationCount = $scope.notificationCount + 1;
+
+		//TODO : update notifications - user object from backend
+		$scope.notificationCount = $scope.notificationCount;	
 		$('#notificationCount').css({top: '-30px'});
 		$('#notificationCount').animate({top: '12px', opacity: 1});
 	}
 	$scope.updateNotification = function() {
-		$scope.user.notifications.push({"textHeading":"New notification","textDescription":"Description about the notification"});
+		console.log('notifications updated');
 	}
 }
-$('#notification-li').click(function() {
-		console.log('clicked');
-		$this.removeClass('nav-button').addClass('nav-button-active');
-	});		
