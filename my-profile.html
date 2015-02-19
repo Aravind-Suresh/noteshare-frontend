@@ -133,8 +133,13 @@
 }
 .separator-small {
 	width:auto;
-	background-color: transparent;
+	background-color: transparentx;
 	height:2px;
+}
+.separator-very-small {
+	width:auto;
+	background-color: transparentx;
+	height:1px;
 }
 .card-container {
 	background-color:white;
@@ -157,6 +162,11 @@
 	color: #2e9ba0 !important;
 	font-size: 1.0em;
 }
+.nav-button>a:active {
+	background: #ffffff !important;
+	color: #2e9ba0 !important;
+	font-size: 1.0em;
+}
 .navbar-schema {
 	background: #2e9ba0 !important;
 	color: #ffffff !important;
@@ -171,8 +181,8 @@
 	top: 5%;
 }
 .nav-center {
-	margin-top:1.8%;
-	margin-left: 30%;
+	margin-top:2.8%;
+	margin-left: 10%;
 }
 .nav-gly-search {
 	left: 10% !important;
@@ -196,20 +206,28 @@
 	font-size: 1.1em;
 }
 .notification-item-text-header {
-	padding: 10px;
-	font-size: 1.2em;
+	padding: 2px;
+	font-size: 0.9em;
 	font-weight: bolder;
+	background: #bbaaaa;
 }
 .notification-item-text-body {
-	padding: 10px;
-	font-size: 1.2em;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
+	font-size: 0.8em;
+	background: #bbaaaa;
 }
 .notification-item-image {
 
 }
 .notification-item {
 	color: black;
-	background: #bbaaaa;
+	background: white;	
+}
+.notification-item a:hover{
+	text-decoration: none;
 }
 .notification-item:hover {
 	color: black;
@@ -238,7 +256,7 @@
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav row">
 					<div class="col-lg-2"></div>
-					<div class="col-lg-6 nopadding">
+					<div class="col-lg-5 nopadding">
 						<li>
 							<div class="nav-center">
 								<div class="input-group">
@@ -251,22 +269,21 @@
 							</div>
 						</li>
 					</div>
-					<div class="col-lg-2 nopadding"></div>
+					<div class="col-lg-1 nopadding"></div>
 					<li class="nav-button notification-container dropdown">
 						<a href="javascript:void(0)" ng-click="updateNotification()" class="dropdown-toggle" id="notificationDropdown" data-toggle="dropdown">&nbsp<i class="fa fa-globe fa-2x"><span id="notificationCount" class="notification-counter">{{notificationCount}}</span></i>&nbsp</a>
-						<ul class="dropdown-menu">          
-							<a>
+						<ul class="dropdown-menu"> 
 								<li ng-repeat="notification in user.notifications">
 									<div class="notification-item">
 										<div class="notification-item-text-header">
-											{{notification.textHeading + ($index+1) + ""}}
+											{{notification.textHeading + " " + ($index+1)}}
 										</div>
 										<div class="notification-item-text-body">
 											{{notification.textDescription}}
 										</div>
+										<div class="row separator-very-small"></div>
 									</div>
 								</li>
-							</a>
 						</ul>
 					</li>
 					<li class="nav-button">
