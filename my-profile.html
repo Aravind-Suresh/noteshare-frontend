@@ -134,12 +134,12 @@
 }
 .separator-small {
 	width:auto;
-	background-color: transparentx;
+	background-color: transparent;
 	height:2px;
 }
 .separator-very-small {
 	width:auto;
-	background-color: transparentx;
+	background-color: transparent;
 	height:1px;
 }
 .card-container {
@@ -163,7 +163,7 @@
 	color: #2e9ba0 !important;
 	font-size: 1.0em;
 }
-.nav-button>a:active {
+.nav-button-active {
 	background: #ffffff !important;
 	color: #2e9ba0 !important;
 	font-size: 1.0em;
@@ -211,22 +211,38 @@
 .frame .slidee li { float: left; margin: 0 5px 0 0; padding: 0; width: 120px; height: 100%; }
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-      width: 20%;
-      margin: auto;
-  }
+	width: 20%;
+	margin: auto;
+}
 .notification-item-text-header {
 	padding: 2px;
 	font-size: 0.9em;
 	font-weight: bolder;
-	background: #bbaaaa;
+	background: transparent;
+	margin-left: 10px !important;
+	margin-right: 10px !important;
 }
 .notification-item-text-body {
 	padding-top: 0px;
 	padding-bottom: 0px;
-	padding-left: 2px;
-	padding-right: 2px;
+	padding-left: 2px !important;
+	padding-right: 2px !important;
+	margin-left: 10px !important;
+	margin-right: 10px !important;
 	font-size: 0.8em;
-	background: #bbaaaa;
+	background: transparent;	
+	margin-bottom: 10px !important;
+}
+.navbar-profile-pic-img-circular{
+	width: 28px;
+	height: 28px;
+	background-image: url('default-profile-pic.jpg');
+	background-size: cover;
+	display: block;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	margin-top: -2%;
 }
 .notification-item-image {
 
@@ -234,17 +250,26 @@
 .notification-item {
 	color: black;
 	background: white;	
+	cursor: pointer;
+	padding-top: 10px !important;
 }
 .notification-item a:hover{
 	text-decoration: none;
 }
 .notification-item:hover {
 	color: black;
-	background: #bbbbbb;
+	background: #eeeeee;
 }
-.dropdown-menu {
-    width: 300px !important;
-    height: 100px !important;
+#notification-li-dropdown.dropdown-menu {
+	width: 400px !important;
+	height: 100px !important;
+}
+.notifications-panel-head {
+	text-align: center;
+	font-weight: bolder;
+	font-size: 1em;
+	color: black;
+	margin:5px !important;
 }
 </style>
 
@@ -279,27 +304,34 @@
 						</li>
 					</div>
 					<div class="col-lg-1 nopadding"></div>
-					<li class="nav-button notification-container dropdown">
+					<li id="notification-li" class="nav-button notification-container dropdown">
 						<a href="javascript:void(0)" ng-click="updateNotification()" class="dropdown-toggle" id="notificationDropdown" data-toggle="dropdown">&nbsp<i class="fa fa-globe fa-2x"><span id="notificationCount" class="notification-counter">{{notificationCount}}</span></i>&nbsp</a>
-						<ul class="dropdown-menu"> 
-								<li ng-repeat="notification in user.notifications">
-									<div class="notification-item">
-										<div class="notification-item-text-header">
-											{{notification.textHeading + " " + ($index+1)}}
-										</div>
-										<div class="notification-item-text-body">
-											{{notification.textDescription}}
-										</div>
-										<div class="row separator-very-small"></div>
+						<ul id="notification-li-dropdown" class="dropdown-menu"> 
+							<li class="notifications-panel-head">
+								Notifications
+							</li>
+							<div style="background:#aaaaaa">
+								<div class="row separator-very-small">
+								</div>
+							</div>
+							<li ng-repeat="notification in user.notifications">
+								<div class="notification-item">
+									<div class="notification-item-text-header">
+										{{notification.textHeading + " " + ($index+1)}}
 									</div>
-								</li>
+									<div class="notification-item-text-body">
+										{{notification.textDescription}}
+									</div>
+									<div style="background:#aaaaaa">
+										<div class="row separator-very-small">
+										</div>
+									</div>
+								</div>
+							</li>
 						</ul>
 					</li>
-					<li class="nav-button">
-						<a href="#">&nbsp<span class="glyphicon glyphicon-user"></span>&nbsp</a>
-					</li>
 					<li class="nav-button dropdown">
-						<a href="#" class="dropdown-toggle" id="dropdown" data-toggle="dropdown">&nbsp<i class="fa fa-user"></i><b class="caret"></b>&nbsp</a>
+						<a href="#" class="dropdown-toggle " id="dropdown" data-toggle="dropdown"><div class="navbar-profile-pic-img-circular"></div></a>
 						<ul class="dropdown-menu">          
 							<li>
 								<a href="javascript:void(0)" ng-click="logout()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
@@ -316,7 +348,7 @@
 		</div>
 		<div class="col-md-3">
 			<div class="row">
-				<div class="col-lg-10 nopadding">
+				<div class="col-lg-10 padding">
 					<img src="default-profile-pic.jpg" class="profile-pic"></img>
 				</div>
 			</div>
@@ -386,9 +418,9 @@
 						File name
 					</div>
 					<div class="col-md-6 progress">
-						<div class="row progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="100"
+						<div class="row progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="70"
 						aria-valuemin="0" aria-valuemax="100" style="width:70%">
-						100%
+						70%
 					</div>
 				</div>
 			</div>
@@ -419,9 +451,9 @@
 						</ul>
 					</div>-->
 					<div class="container">
-					  <br>
-					  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-						<!-- Indicators -->
+						<br>
+						<div id="myCarousel" class="carousel slide" data-ride="carousel">
+							<!-- Indicators -->
 						<!--<ol class="carousel-indicators">
 						  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 						  <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -431,100 +463,100 @@
 
 						<!-- Wrapper for slides -->
 						<div class="carousel-inner" role="listbox">
-						  <div class="item active">
-							<img src="default-profile-pic.jpg" alt="Chania">
-						  </div>
+							<div class="item active">
+								<img src="default-profile-pic.jpg" alt="Chania">
+							</div>
 
-						  <div class="item">
-							<img src="default-profile-pic.jpg" alt="Chania">
-						  </div>
-						
-						  <div class="item">
-							<img src="default-profile-pic.jpg" alt="Chania">
-						  </div>
+							<div class="item">
+								<img src="default-profile-pic.jpg" alt="Chania">
+							</div>
 
-						  <div class="item">
-							<img src="default-profile-pic.jpg" alt="Chania">
-						  </div>
+							<div class="item">
+								<img src="default-profile-pic.jpg" alt="Chania">
+							</div>
+
+							<div class="item">
+								<img src="default-profile-pic.jpg" alt="Chania">
+							</div>
 						</div>
 
 						<!-- Left and right controls -->
 						<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-						  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						  <span class="sr-only">Previous</span>
+							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
 						</a>
 						<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-						  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						  <span class="sr-only">Next</span>
+							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
 						</a>
-					  </div>
 					</div>
 				</div>
 			</div>
-			<div class="container-fluid card-container">
-				<!--<p style="font-size:25px;color:#339999">Recent Uploads</p>-->
-				<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Uploads</div>
-				<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
-				<div class="col-md-12 jumbotron" style="border:1px solid #CCCCCC;">
-					Uploads
-				</div>
+		</div>
+		<div class="container-fluid card-container">
+			<!--<p style="font-size:25px;color:#339999">Recent Uploads</p>-->
+			<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Uploads</div>
+			<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
+			<div class="col-md-12 jumbotron" style="border:1px solid #CCCCCC;">
+				Uploads
 			</div>
 		</div>
 	</div>
-	<div class="modal fade" id="uploadNotes" tabindex="-1" role="dialog" aria-labelledby="uploadNotesModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h3 class="modal-title panel-form-title" id="uploadNotesModalLabel">Fill in details to share your Notes</h3>
-				</div>
-				<div class="modal-body">
-					<div class="panel panel-form-body">
-						<div class="panel-body">
-							<br>
-							<div class="row">
-								<div class="col-md-2 vert-center-note"><small>File name</small></div>
-								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="filename" placeholder="Filename"></div>
-							</div><br>
+</div>
+<div class="modal fade" id="uploadNotes" tabindex="-1" role="dialog" aria-labelledby="uploadNotesModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title panel-form-title" id="uploadNotesModalLabel">Fill in details to share your Notes</h3>
+			</div>
+			<div class="modal-body">
+				<div class="panel panel-form-body">
+					<div class="panel-body">
+						<br>
+						<div class="row">
+							<div class="col-md-2 vert-center-note"><small>File name</small></div>
+							<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="filename" placeholder="Filename"></div>
+						</div><br>
 
-							<div class="row">
-								<div class="col-md-2 vert-center-note"><small>Semester</small></div>
-								<div class="col-md-3"><input type="text" class="border-bottom-text col-lg-11" ng-model="semester" placeholder="Semester"></div>
-								<div class="col-md-1 vert-center-note"><small>Year</small></div>
-								<div class="col-md-4"><input type="text" class="border-bottom-text col-lg-10" ng-model="year" placeholder="Year"></div>
-							</div><br>
+						<div class="row">
+							<div class="col-md-2 vert-center-note"><small>Semester</small></div>
+							<div class="col-md-3"><input type="text" class="border-bottom-text col-lg-11" ng-model="semester" placeholder="Semester"></div>
+							<div class="col-md-1 vert-center-note"><small>Year</small></div>
+							<div class="col-md-4"><input type="text" class="border-bottom-text col-lg-10" ng-model="year" placeholder="Year"></div>
+						</div><br>
 
-							<div class="row">
-								<div class="col-md-2 vert-center-note"><small>Department</small></div>
-								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="department" placeholder="Department"></div>
-							</div><br>
+						<div class="row">
+							<div class="col-md-2 vert-center-note"><small>Department</small></div>
+							<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="department" placeholder="Department"></div>
+						</div><br>
 
-							<div class="row">
-								<div class="col-md-2 vert-center-note"><small>Source</small></div>
-								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="source" placeholder="Source"></div>
-							</div><br>
+						<div class="row">
+							<div class="col-md-2 vert-center-note"><small>Source</small></div>
+							<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="source" placeholder="Source"></div>
+						</div><br>
 
-							<div class="row">
-								<div class="col-md-2 vert-center-note"><small>Description</small></div>
-								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="description" placeholder="Description"></div>
-							</div><br>
+						<div class="row">
+							<div class="col-md-2 vert-center-note"><small>Description</small></div>
+							<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="description" placeholder="Description"></div>
+						</div><br>
 
-							<div class="row">
-								<div class="col-md-2 vert-center-note"><small>Tags</small></div>
-								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="tags" placeholder="Tags separated with a space (max. 5)"></div>
-							</div><br><br><br>
+						<div class="row">
+							<div class="col-md-2 vert-center-note"><small>Tags</small></div>
+							<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="tags" placeholder="Tags separated with a space (max. 5)"></div>
+						</div><br><br><br>
 
-							<div class="row">
-								<center>
-									<button type="button" class="btn btn-default btn-flat-note" data-dismiss="modal" ng-click="uploadNotes()"><big>&nbsp&nbspShare&nbsp&nbsp</big></button>
-								</center>
-							</div>
-
+						<div class="row">
+							<center>
+								<button type="button" class="btn btn-default btn-flat-note" data-dismiss="modal" ng-click="uploadNotes()"><big>&nbsp&nbspShare&nbsp&nbsp</big></button>
+							</center>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 </html>

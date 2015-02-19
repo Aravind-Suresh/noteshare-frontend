@@ -37,3 +37,7 @@ function myProfile($scope) {
 		$scope.user.notifications.push({"textHeading":"New notification","textDescription":"Description about the notification"});
 	}
 }
+$('#notification-li').click(function() {
+		console.log('clicked');
+		$this.removeClass('nav-button').addClass('nav-button-active');
+	});		
