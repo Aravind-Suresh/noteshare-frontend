@@ -75,7 +75,7 @@
 }
 .profile-pic {
 	width: 83.3%;
-	height: 41.1%;
+	height: 33%;
 	border: 1px solid;
 	border-color: black;
 }
@@ -111,18 +111,28 @@
 	text-align: center;
 }
 .nav-link {
-	background: #aaaaaa;
-	color: #333333;
+	background: #bbaaaa;
+	color: #444444;
 	vertical-align: middle;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	width: 92.3%;
-	font-size: 1.2em;
+	font-size: 1.1em;
+}
+.nav-link:hover {
+	background: #ddcccc;
+	color: #000000;
+	vertical-align: middle;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 92.3%;
+	font-size: 1.1em;
+	cursor: pointer;
 }
 .separator-small {
 	width:auto;
 	background-color: transparent;
-	height:3px;
+	height:2px;
 }
 </style>
 
@@ -200,6 +210,15 @@
 				<div class="col-lg-8 nopadding">Dashboard</div>
 			</div>
 			<div class="row separator-small"></div>
+			<div class="row nav-link">				
+				<div class="col-lg-1"></div>
+				<div class="col-lg-8 nopadding">My Uploads</div>
+			</div>
+			<div class="row separator-small"></div>
+			<div class="row nav-link">				
+				<div class="col-lg-1"></div>
+				<div class="col-lg-8 nopadding">My Downloads</div>
+			</div>
 		</div>
 		<div class="col-md-9 jumbotron" style="border:1px solid #CCCCCC;padding:20px">
 			<span style="font:italic bold 20px Arial,Helvetica,sans-serif;color:#555555">Welcome {{ user.userName }},</span>
