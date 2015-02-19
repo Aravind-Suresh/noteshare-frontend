@@ -110,6 +110,20 @@
 	margin-left: 0px;
 	text-align: center;
 }
+.nav-link {
+	background: #aaaaaa;
+	color: #333333;
+	vertical-align: middle;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 92.3%;
+	font-size: 1.2em;
+}
+.separator-small {
+	width:auto;
+	background-color: transparent;
+	height:3px;
+}
 </style>
 
 <html ng-app="">
@@ -158,28 +172,34 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-2 detail nopadding">
-					<div class="detail detail-large">50</div>
+					<div class="detail detail-large">{{user.uploadsCount}}</div>
 					<div class="detail detail-small">Uploads</div>
 				</div>
 				<div class="col-lg-2 detail nopadding">
-					<div class="detail detail-large">60</div>
+					<div class="detail detail-large">{{user.downloadsCount}}</div>
 					<div class="detail detail-small">Downloads</div>
 				</div>
 				<div class="col-lg-2 detail nopadding">
-					<div class="detail detail-large">10</div>
+					<div class="detail detail-large">{{user.creditsCount}}</div>
 					<div class="detail detail-small">Credits</div>
 				</div>
 				<div class="col-lg-2 detail nopadding">
-					<div class="detail detail-large">40</div>
+					<div class="detail detail-large">{{user.followersCount}}</div>
 					<div class="detail detail-small">Followers</div>
 				</div>
 				<div class="col-lg-2 detail nopadding">
 					<center>
-						<div class="detail detail-large">0</div>
+						<div class="detail detail-large">{{user.followingCount}}</div>
 						<div class="detail detail-small">Following</div>
 					</center>
 				</div>
 			</div>
+			<div class="row separator-small"></div>
+			<div class="row nav-link">				
+				<div class="col-lg-1"></div>
+				<div class="col-lg-8 nopadding">Dashboard</div>
+			</div>
+			<div class="row separator-small"></div>
 		</div>
 		<div class="col-md-9 jumbotron" style="border:1px solid #CCCCCC;padding:20px">
 			<span style="font:italic bold 20px Arial,Helvetica,sans-serif;color:#555555">Welcome {{ user.userName }},</span>
