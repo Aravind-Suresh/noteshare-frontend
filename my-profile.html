@@ -74,10 +74,14 @@
 	box-shadow: 0 1px 1px #349a9a inset, 0 0 8px #349a9a !important;
 }
 .profile-pic {
-	width: auto;
-	height: 33%;
+	width: 83.3%;
+	height: 38%;
 	border: 1px solid;
 	border-color: black;
+}
+.fixed-top-nav {
+	position: fixed !important;
+	z-index: 1 !important;
 }
 .detail-large {
 	font-size: 1.4em;
@@ -120,8 +124,8 @@
 	font-size: 1.1em;
 }
 .nav-link:hover {
-	background: #ddcccc;
-	color: #000000;
+	background: #333333;
+	color: #ffffff;
 	vertical-align: middle;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -143,6 +147,31 @@
 .disclaimer {
 	color:grey !important;
 }
+.nav-button>a {
+	background: #2e9ba0 !important;
+	color: #ffffff !important;
+	padding-top: 18px !important;
+	padding-bottom: 18px !important;
+	font-size: 1.0em;
+}
+.nav-button>a:hover {
+	background: #ffffff !important;
+	color: #2e9ba0 !important;
+	font-size: 1.0em;
+}
+.navbar-schema {
+	background: #2e9ba0 !important;
+	color: #ffffff !important;
+	border: 0px solid;
+	border-radius: 0px !important;
+}
+.navbar-logo {
+	width:8%;
+	height:auto;
+	position: absolute;
+	left: 5%;
+	top: 5%;
+}
 </style>
 
 <html ng-app="">
@@ -159,32 +188,26 @@
 			{{ user.userName + "'s Profile" }}
 		</title>
 	</head>
-	
-	<nav class="navbar navbar-inverse" style="background-color:#339999">
+
+	<nav class="fixed-top-nav navbar navbar-default navbar-schema col-md-12">
 		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span> 
-				</button>
-				<a class="navbar-brand" href="#">WebSiteName</a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Page 1</a></li>
-					<li><a href="#">Page 2</a></li> 
-					<li><a href="#">Page 3</a></li> 
-				</ul>
+			<a href="#"><img class="navbar-logo" src="logo.png"></img></a>
+			
+			<div class="collapse navbar-collapse navbar-center-buttons">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<li class="nav-button"><a href="#">HOME</a></li>
+					<li class="nav-button"><a href="#">ABOUT US</a></li>
+					<li class="nav-button"><a href="#">CONTACT US</a></li>
+					<li class="nav-button"><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp&nbspSIGN UP</a></li>
+					<li class="nav-button"><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp&nbspLOGIN</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+
 	<div class="container-fluid">
+		<div class="row" style="height:20%">
+		</div>
 		<div class="col-md-3">
 			<div class="row">
 				<img src="default-profile-pic.jpg" class="profile-pic"></img>
