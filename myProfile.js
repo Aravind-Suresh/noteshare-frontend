@@ -12,11 +12,16 @@ function myProfile($scope) {
 	$scope.uploadNotes = function() {
 		console.log('Notes uploaded');
 	}
-
+	$scope.displayModalUploadNotes = function() {
+		$('#uploadNotes').modal('show');
+	}
 	$scope.loadImage = function() {
 		console.log('Image loaded');
 	}
 	$scope.browseFiles = function() {
 		console.log('Browsing files');
+	}
+	$scope.logout = function() {
+		console.log('logged out');
 	}
 }
