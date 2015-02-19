@@ -13,6 +13,7 @@
 <link href="css/bootstrap-switch.css" rel="stylesheet">
 <link href="css/timeline.css" rel="stylesheet">
 <link href="css/plugins/morris.css" rel="stylesheet">
+<link href="css/notification-counter.css" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -203,6 +204,30 @@
       width: 20%;
       margin: auto;
   }
+.notification-item-text-header {
+	padding: 10px;
+	font-size: 1.2em;
+	font-weight: bolder;
+}
+.notification-item-text-body {
+	padding: 10px;
+	font-size: 1.2em;
+}
+.notification-item-image {
+
+}
+.notification-item {
+	color: black;
+	background: #bbaaaa;
+}
+.notification-item:hover {
+	color: black;
+	background: #bbbbbb;
+}
+.dropdown-menu {
+    width: 300px !important;
+    height: 100px !important;
+}
 </style>
 
 <html ng-app="">
@@ -228,7 +253,7 @@
 								<div class="input-group">
 									<input placeholder="Search for notes.." id="filter-by" class="form-control input" style="line-height:2;"/>
 									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!
+										<button class="btn btn-default" ng-click="updateNotificationCounter()" type="button">Go!
 										</button>
 									</span>
 								</div>
@@ -236,6 +261,23 @@
 						</li>
 					</div>
 					<div class="col-lg-2 nopadding"></div>
+					<li class="nav-button notification-container dropdown">
+						<a href="javascript:void(0)" ng-click="updateNotification()" class="dropdown-toggle" id="notificationDropdown" data-toggle="dropdown">&nbsp<i class="fa fa-globe fa-2x"><span id="notificationCount" class="notification-counter">{{notificationCount}}</span></i>&nbsp</a>
+						<ul class="dropdown-menu">          
+							<a>
+								<li ng-repeat="notification in user.notifications">
+									<div class="notification-item">
+										<div class="notification-item-text-header">
+											{{notification.textHeading + ($index+1) + ""}}
+										</div>
+										<div class="notification-item-text-body">
+											{{notification.textDescription}}
+										</div>
+									</div>
+								</li>
+							</a>
+						</ul>
+					</li>
 					<li class="nav-button">
 						<a href="#">&nbsp<span class="glyphicon glyphicon-user"></span>&nbsp</a>
 					</li>
@@ -247,7 +289,6 @@
 							</li>
 						</ul>
 					</li>
-					<li class="nav-button"><a href="#">&nbsp<span class="glyphicon glyphicon-log-in"></span>&nbsp</a></li>
 				</ul>
 			</div>
 		</div>
@@ -323,7 +364,7 @@
 			<div class="container-fluid card-container">
 				<h3>Uploading your file...</h3><br>
 				<div class="container-fluid">
-					<div class="col-md-2">
+					<div class="col-md-3">
 						<img src="default-profile-pic.jpg" alt="File" style="width:25px;height:25px;margin-right:30px"></img>
 						File name
 					</div>
@@ -431,34 +472,34 @@
 
 							<div class="row">
 								<div class="col-md-2 vert-center-note"><small>Semester</small></div>
-								<div class="col-md-3"><input type="text" class="border-bottom-text col-lg-11" ng-model="filename" placeholder="Semester"></div>
+								<div class="col-md-3"><input type="text" class="border-bottom-text col-lg-11" ng-model="semester" placeholder="Semester"></div>
 								<div class="col-md-1 vert-center-note"><small>Year</small></div>
-								<div class="col-md-4"><input type="text" class="border-bottom-text col-lg-10" ng-model="filename" placeholder="Year"></div>
+								<div class="col-md-4"><input type="text" class="border-bottom-text col-lg-10" ng-model="year" placeholder="Year"></div>
 							</div><br>
 
 							<div class="row">
 								<div class="col-md-2 vert-center-note"><small>Department</small></div>
-								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="filename" placeholder="Department"></div>
+								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="department" placeholder="Department"></div>
 							</div><br>
 
 							<div class="row">
 								<div class="col-md-2 vert-center-note"><small>Source</small></div>
-								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="filename" placeholder="Source"></div>
+								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="source" placeholder="Source"></div>
 							</div><br>
 
 							<div class="row">
 								<div class="col-md-2 vert-center-note"><small>Description</small></div>
-								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="filename" placeholder="Description"></div>
+								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="description" placeholder="Description"></div>
 							</div><br>
 
 							<div class="row">
 								<div class="col-md-2 vert-center-note"><small>Tags</small></div>
-								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="filename" placeholder="Tags separated with a space (max. 5)"></div>
+								<div class="col-md-8"><input type="text" class="border-bottom-text col-lg-11" ng-model="tags" placeholder="Tags separated with a space (max. 5)"></div>
 							</div><br><br><br>
 
 							<div class="row">
 								<center>
-									<button type="button" class="btn btn-default btn-flat-note" data-dismiss="modal"x ng-click="uploadNotes()"><big>&nbsp&nbspShare&nbsp&nbsp</big></button>
+									<button type="button" class="btn btn-default btn-flat-note" data-dismiss="modal" ng-click="uploadNotes()"><big>&nbsp&nbspShare&nbsp&nbsp</big></button>
 								</center>
 							</div>
 
