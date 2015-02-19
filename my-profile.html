@@ -74,10 +74,9 @@
 	box-shadow: 0 1px 1px #349a9a inset, 0 0 8px #349a9a !important;
 }
 .profile-pic {
-	width: 83.3%;
-	height: 38%;
 	border: 1px solid;
 	border-color: black;
+	width: 100%;
 }
 .fixed-top-nav {
 	position: fixed !important;
@@ -232,21 +231,21 @@
 						</li>
 					</div>
 					<div class="col-lg-2 nopadding"></div>
-						<li class="nav-button"><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp&nbsp</a></li>
-						<li class="nav-button"><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp&nbsp</a></li>
+					<li class="nav-button"><a href="#">&nbsp<span class="glyphicon glyphicon-user"></span>&nbsp</a></li>
+					<li class="nav-button"><a href="#">&nbsp<span class="glyphicon glyphicon-log-in"></span>&nbsp</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-
-
 
 	<div class="container-fluid">
 		<div class="row" style="height:20%">
 		</div>
 		<div class="col-md-3">
 			<div class="row">
-				<img src="default-profile-pic.jpg" class="profile-pic"></img>
+				<div class="col-lg-10 nopadding">
+					<img src="default-profile-pic.jpg" class="profile-pic"></img>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-2 detail nopadding">
@@ -305,23 +304,23 @@
 					<div class="col-md-6 progress">
 						<div class="row progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="70"
 						aria-valuemin="0" aria-valuemax="100" style="width:70%">
-							70%
-						</div>
+						70%
 					</div>
 				</div>
-				<div class="container-fluid card-container">
-					<center>
-						<h3>Drag and Drop Files</h3>
-						<h3 style="color:grey"><b>or</b></h3>
-						<button data-toggle="modal" ng-click="browseFiles()" data-target="#uploadNotes" type="button" class="btn btn-default btn-flat-note">
-							<span class="glyphicon glyphicon-search"></span>&nbsp Browse
-						</button>
-					</center>
-					
-				</div>
-				<p>
-					<h3 class="disclaimer"><b>Disclaimer</b></h3>
-					<big class="disclaimer">The file you are uploading is now of complete rights for NoteShare Ltd.,
+			</div>
+			<div class="container-fluid card-container">
+				<center>
+					<h3>Drag and Drop Files</h3>
+					<h3 style="color:grey"><b>or</b></h3>
+					<button data-toggle="modal" ng-click="browseFiles()" data-target="#uploadNotes" type="button" class="btn btn-default btn-flat-note">
+						<span class="glyphicon glyphicon-search"></span>&nbsp Browse
+					</button>
+				</center>
+
+			</div>
+			<p>
+				<h3 class="disclaimer"><b>Disclaimer</b></h3>
+				<big class="disclaimer">The file you are uploading is now of complete rights for NoteShare Ltd.,
 					and you are accepting that your file will be downloaded for free by any user.</big>
 				</p>
 			</div>
