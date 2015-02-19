@@ -16,4 +16,7 @@ function myProfile($scope) {
 	$scope.loadImage = function() {
 		console.log('Image loaded');
 	}
+	$scope.browseFiles = function() {
+		console.log('Browsing files');
+	}
 }

@@ -138,6 +138,15 @@
 	background-color: transparent;
 	height:2px;
 }
+.card-container {
+	background-color:white;
+	padding:25px;
+	margin-top:20px;
+	border:1px solid grey;
+}
+.disclaimer {
+	color:grey !important;
+}
 .nav-button>a {
 	background: #2e9ba0 !important;
 	color: #ffffff !important;
@@ -281,13 +290,42 @@
 		</div>
 		<div class="col-md-9 jumbotron" style="border:1px solid #CCCCCC;padding:20px">
 			<span style="font:italic bold 20px Arial,Helvetica,sans-serif;color:#555555">Welcome {{ user.userName }},</span>
-			<div class="container-fluid" style="background-color:white;padding:25px;margin-top:20px;border:1px solid grey">
-				<p style="font-size:25px">Upload Notes & Earn Credits</p>
+			<div class="container-fluid card-container">
+				<h3>Upload Notes & Earn Credits</h3>
+				<button data-toggle="modal" ng-click="loadImage()" data-target="#uploadNotes" type="button" class="btn btn-default btn-flat-note">Upload Notes</button>
+			</div>
+			<!-- TODO replace above container with below container when uploading -->
+			<div class="container-fluid card-container">
+				<h3>Uploading your file...</h3><br>
+				<div class="container-fluid">
+					<div class="col-md-2">
+						<img src="default-profile-pic.jpg" alt="File" style="width:25px;height:25px;margin-right:30px"></img>
+						File name
+					</div>
+					<div class="col-md-6 progress">
+						<div class="row progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="70"
+						aria-valuemin="0" aria-valuemax="100" style="width:70%">
+							70%
+						</div>
+					</div>
+				</div>
+				<div class="container-fluid card-container">
+					<center>
+						<h3>Drag and Drop Files</h3>
+						<h3 style="color:grey"><b>or</b></h3>
+						<button data-toggle="modal" ng-click="browseFiles()" data-target="#uploadNotes" type="button" class="btn btn-default btn-flat-note">
+							<span class="glyphicon glyphicon-search"></span>&nbsp Browse
+						</button>
+					</center>
+					
+				</div>
 				<p>
-					<button data-toggle="modal" ng-click="loadImage()" data-target="#uploadNotes" type="button" class="btn btn-default btn-flat-note">Upload Notes</button>
+					<h3 class="disclaimer"><b>Disclaimer</b></h3>
+					<big class="disclaimer">The file you are uploading is now of complete rights for NoteShare Ltd.,
+					and you are accepting that your file will be downloaded for free by any user.</big>
 				</p>
 			</div>
-			<div class="container-fluid" style="background-color:white;padding:25px;margin-top:20px;border:1px solid grey">
+			<div class="container-fluid card-container">
 				<!--<p style="font-size:25px;color:#339999">Recent Downloads</p>-->
 				<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Downloads</div>
 				<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
@@ -295,7 +333,7 @@
 					Downloads
 				</div>
 			</div>
-			<div class="container-fluid" style="background-color:white;padding:25px;margin-top:20px;border:1px solid grey">
+			<div class="container-fluid card-container">
 				<!--<p style="font-size:25px;color:#339999">Recent Uploads</p>-->
 				<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Uploads</div>
 				<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
