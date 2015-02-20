@@ -34,7 +34,7 @@ jQuery(function($){
 			forward: $wrap.find('.forward'),
 			backward: $wrap.find('.backward'),
 			prev: $wrap.find('.prev'),
-			next: $wrap.find('.next'),
+			next: $wrap.find('.next') | $wrap.parent().find('next'),
 			prevPage: $wrap.find('.prevPage'),
 			nextPage: $wrap.find('.nextPage')
 		});
