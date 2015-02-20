@@ -209,6 +209,11 @@
 	width: 100%;
 	font-size: 1.1em;
 }
+input[type="text"] {
+	color: black !important;
+	background: white !important;
+	line-height: auto !important;
+}
 .block-white {
 	background: #ffffff;
 	color: #ffffff;
@@ -284,6 +289,46 @@
 	border:1px solid #BBBBBB;
 	background-color:#DDDDDD;
 }
+table { border-collapse: collapse; }
+.percent {
+	position: absolute; width: 300px; height: 14px; z-index: 1; text-align: center; font-size: 0.8em; color: white;
+}
+.progress-bar {
+	width: 300px; height: 14px;
+	border-radius: 10px;
+	border: 1px solid #CCC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#6666cc), to(#4b4b95));
+	border-image: initial;
+}
+.uploaded {
+	padding: 0;
+	height: 14px;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#66cc00), to(#4b9500));
+	border-image: initial;
+}
+.dropbox {
+	width: 15em;
+	height: 3em;
+	border: 2px solid #DDD;
+	border-radius: 8px;
+	background-color: #FEFFEC;
+	text-align: center;
+	color: #BBB;
+	font-size: 2em;
+	font-family: Arial, sans-serif;
+}
+.dropbox span {
+	margin-top: 0.9em;
+	display: block;
+}
+.dropbox.not-available {
+	background-color: #F88;
+}
+.dropbox.over {
+	background-color: #bfb;
+}
+
 </style>
 
 <html ng-app="">
@@ -434,7 +479,7 @@
 					</a>
 				</div>
 				<h3>Uploading your file...</h3><br>
-				<div class="container-fluid">
+				<!-- <div class="container-fluid">
 					<div ng-repeat="file in files track by $index">
 						<div class="row">
 							<div class="col-md-3">
@@ -442,17 +487,15 @@
 								{{file.fileName}}
 							</div>
 							<div class="col-md-6 progress">
-								<div class="row progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="70"
-								aria-valuemin="0" aria-valuemax="100" style="width:70%">
+								<div class="row progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="100"
+								aria-valuemin="0" aria-valuemax="100">
 								70%
 							</div>
 							<div class="col-md-3"></div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="container-fluid card-container" ng-show="visUploadProgress">
-				<center>
+				</div> -->
+				<!-- <center>
 					<h3>Drag and Drop Files</h3>
 					<h3 style="color:grey"><b>or</b></h3>
 					<div class="fileinput fileinput-new" id="browseFileInput" data-provides="fileinput">
@@ -471,41 +514,61 @@
 						<a href="javascript:void(0)" id="removeSelectedFile" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>&nbsp&nbsp&nbsp
 						<a href="javascript:void(0)" style="color:black;" class="fileinput-exists" ng-click="startUpload()"><i class="fa fa-upload fa-1x"></i></a>
 					</div>
-				</center>
+				</center> -->
+				<div class="row">
+					<label for="fileToUpload">Select a File to Upload</label><br />
+					<input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
+				</div>
+				<div id="dropbox" class="dropbox" ng-class="dropClass"><span>{{dropText}}</span></div>
+				<div ng-show="files.length">
+					<div ng-repeat="file in files.slice(0)">
+						<span>{{file.webkitRelativePath || file.name}}</span>
+						(<span ng-switch="file.size > 1024*1024">
+						<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+						<span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+					</span>)
+				</div>
+				<input type="button" ng-click="uploadFile()" value="Upload" />
+				<div ng-show="progressVisible">
+					<div class="percent">{{progress}}%</div>
+					<div class="progress-bar">
+						<div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+					</div>
+				</div>
 
 			</div>
 			<p>
 				<h3 class="disclaimer"><b>Disclaimer</b></h3>
 				<big class="disclaimer">The file you are uploading is now of complete rights for NoteShare Ltd.,
 					and you are accepting that your file will be downloaded for free by any user.</big>
-			</p>
-		</div>
-		<div class="container-fluid card-container">
-			<!--<p style="font-size:25px;color:#339999">Recent Downloads</p>-->
-			<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Downloads</div>
-			<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
-			
-		</div>
-		<div class="container-fluid card-container">
-			<!--<p style="font-size:25px;color:#339999">Recent Uploads</p>-->
-			<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Uploads</div>
-			<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
-			<div class="col-md-12 files-list-container">
-				<div class="wrap">
-					<!--<h2>Centered <small>- activated or middle item is centered when possible</small></h2>-->
-					<div class="scrollbar">
-						<div class="handle" style="transform: translateZ(0px) translateX(0px); width: 190px;">
-							<div class="mousearea"></div>
+				</p>
+			</div>
+			<div class="container-fluid card-container">
+				<!--<p style="font-size:25px;color:#339999">Recent Downloads</p>-->
+				<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Downloads</div>
+				<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
+
+			</div>
+			<div class="container-fluid card-container">
+				<!--<p style="font-size:25px;color:#339999">Recent Uploads</p>-->
+				<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Uploads</div>
+				<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
+				<div class="col-md-12 files-list-container">
+					<div class="wrap">
+						<!--<h2>Centered <small>- activated or middle item is centered when possible</small></h2>-->
+						<div class="scrollbar">
+							<div class="handle" style="transform: translateZ(0px) translateX(0px); width: 190px;">
+								<div class="mousearea"></div>
+							</div>
 						</div>
-					</div>
-					<div class="frame" id="centered">
-						<ul class="clearfix" style="transform: translateZ(0px); width: 6840px;">
-							<li class="active">0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
-							<li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>
-							<li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li>
-							<li>28</li><li>29</li>
-						</ul>
-					</div>
+						<div class="frame" id="centered">
+							<ul class="clearfix" style="transform: translateZ(0px); width: 6840px;">
+								<li class="active">0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
+								<li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>
+								<li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li>
+								<li>28</li><li>29</li>
+							</ul>
+						</div>
 					<!--<div class="controls center">
 						<button class="btn prev"><i class="icon-chevron-left"></i> prev</button>
 						<button class="btn next">next <i class="icon-chevron-right"></i></button>
@@ -513,8 +576,8 @@
 				</div>
 			</div>
 		</div>
-		</div>
 	</div>
+</div>
 <div class="modal fade" id="uploadNotes" tabindex="-1" role="dialog" aria-labelledby="uploadNotesModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
