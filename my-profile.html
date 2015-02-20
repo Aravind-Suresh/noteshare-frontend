@@ -209,6 +209,11 @@
 	width: 100%;
 	font-size: 1.1em;
 }
+input[type="text"] {
+	color: black !important;
+	background: white !important;
+	line-height: auto !important;
+}
 .block-white {
 	background: #ffffff;
 	color: #ffffff;
@@ -295,6 +300,45 @@
 }
 .grey-icon {
 	color:grey;
+}
+table { border-collapse: collapse; }
+.percent {
+	position: absolute; width: 300px; height: 14px; z-index: 1; text-align: center; font-size: 0.8em; color: white;
+}
+.progress-bar {
+	width: 300px; height: 14px;
+	border-radius: 10px;
+	border: 1px solid #CCC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#6666cc), to(#4b4b95));
+	border-image: initial;
+}
+.uploaded {
+	padding: 0;
+	height: 14px;
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#66cc00), to(#4b9500));
+	border-image: initial;
+}
+.dropbox {
+	width: 15em;
+	height: 3em;
+	border: 2px solid #DDD;
+	border-radius: 8px;
+	background-color: #FEFFEC;
+	text-align: center;
+	color: #BBB;
+	font-size: 2em;
+	font-family: Arial, sans-serif;
+}
+.dropbox span {
+	margin-top: 0.9em;
+	display: block;
+}
+.dropbox.not-available {
+	background-color: #F88;
+}
+.dropbox.over {
+	background-color: #bfb;
 }
 </style>
 
@@ -446,20 +490,23 @@
 					</a>
 				</div>
 				<h3>Uploading your file...</h3><br>
-				<div class="container-fluid">
-					<div class="col-md-3">
-						<img src="default-profile-pic.jpg" alt="File" style="width:25px;height:25px;margin-right:30px"></img>
-						File name
+				<!-- <div class="container-fluid">
+					<div ng-repeat="file in files track by $index">
+						<div class="row">
+							<div class="col-md-3">
+								<img src="default-profile-pic.jpg" alt="File" style="width:25px;height:25px;margin-right:30px"></img>
+								{{file.fileName}}
+							</div>
+							<div class="col-md-6 progress">
+								<div class="row progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="100"
+								aria-valuemin="0" aria-valuemax="100">
+								70%
+							</div>
+							<div class="col-md-3"></div>
+						</div>
 					</div>
-					<div class="col-md-6 progress">
-						<div class="row progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="70"
-						aria-valuemin="0" aria-valuemax="100" style="width:70%">
-						70%
-					</div>
-				</div>
-			</div>
-			<div class="container-fluid card-container upload-drop-zone" ng-show="visUploadProgress">
-				<center>
+				</div> -->
+				<!-- <center>
 					<h3>Drag and Drop Files</h3>
 					<h3 style="color:grey"><b>or</b></h3>
 					<div class="fileinput fileinput-new" id="browseFileInput" data-provides="fileinput">
@@ -469,15 +516,36 @@
 								</span>
 								&nbsp Browse
 							</span>
-							<span class="fileinput-exists cursor-pointer">
+							<span class="fileinput-exists">
 								Change
 							</span>
 							<input type="file" name="...">
-						</span>
-						<span class="fileinput-filename"></span>
-						<a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+						</span>&nbsp&nbsp&nbsp
+						<span class="fileinput-filename"></span>&nbsp&nbsp&nbsp
+						<a href="javascript:void(0)" id="removeSelectedFile" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>&nbsp&nbsp&nbsp
+						<a href="javascript:void(0)" style="color:black;" class="fileinput-exists" ng-click="startUpload()"><i class="fa fa-upload fa-1x"></i></a>
 					</div>
-				</center>
+				</center> -->
+				<div class="row">
+					<label for="fileToUpload">Select a File to Upload</label><br />
+					<input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
+				</div>
+				<div id="dropbox" class="dropbox" ng-class="dropClass"><span>{{dropText}}</span></div>
+				<div ng-show="files.length">
+					<div ng-repeat="file in files.slice(0)">
+						<span>{{file.webkitRelativePath || file.name}}</span>
+						(<span ng-switch="file.size > 1024*1024">
+						<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+						<span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+					</span>)
+				</div>
+				<input type="button" ng-click="uploadFile()" value="Upload" />
+				<div ng-show="progressVisible">
+					<div class="percent">{{progress}}%</div>
+					<div class="progress-bar">
+						<div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+					</div>
+				</div>
 
 			</div>
 			<p>
@@ -531,8 +599,8 @@
 				</div>-->
 			</div>
 		</div>
-		</div>
 	</div>
+</div>
 <div class="modal fade" id="uploadNotes" tabindex="-1" role="dialog" aria-labelledby="uploadNotesModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
