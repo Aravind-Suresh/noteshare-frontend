@@ -18,6 +18,10 @@ function myProfile($scope) {
 		$scope.user.notifications.push({"textHeading":"New notification","textDescription":"Description about the notification"});
 	}
 
+	$scope.fileInputClick = function() {
+		$('#fileToUpload').click();
+	}
+
 	$scope.uploadNotes = function() {
 		console.log('Notes uploaded');
 		//Will be called when progress bar reaches 100%
@@ -60,14 +64,14 @@ function myProfile($scope) {
 	}
 
     var dropbox = document.getElementById("dropbox")
-    $scope.dropText = 'Drop files here...'
+    $scope.dropText = 'Drag or drop files here...'
 
     // init event handlers
     function dragEnterLeave(evt) {
         evt.stopPropagation()
         evt.preventDefault()
         $scope.$apply(function(){
-            $scope.dropText = 'Drop files here...'
+            $scope.dropText = 'Drag or drop files here...'
             $scope.dropClass = ''
         })
     }

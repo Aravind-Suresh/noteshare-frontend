@@ -320,8 +320,8 @@ table { border-collapse: collapse; }
 	border-image: initial;
 }
 .dropbox {
-	width: 15em;
-	height: 3em;
+	width: 30em;
+	height: 10em;
 	border: 2px solid #DDD;
 	border-radius: 8px;
 	background-color: #FEFFEC;
@@ -332,7 +332,7 @@ table { border-collapse: collapse; }
 }
 .dropbox span {
 	margin-top: 0.9em;
-	display: block;
+	display: inline;
 }
 .dropbox.not-available {
 	background-color: #F88;
@@ -526,27 +526,46 @@ table { border-collapse: collapse; }
 						<a href="javascript:void(0)" style="color:black;" class="fileinput-exists" ng-click="startUpload()"><i class="fa fa-upload fa-1x"></i></a>
 					</div>
 				</center> -->
-				<div class="row">
-					<label for="fileToUpload">Select a File to Upload</label><br />
-					<input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
-				</div>
-				<div id="dropbox" class="dropbox" ng-class="dropClass"><span>{{dropText}}</span></div>
-				<div ng-show="files.length">
-					<div ng-repeat="file in files.slice(0)">
-						<span>{{file.webkitRelativePath || file.name}}</span>
-						(<span ng-switch="file.size > 1024*1024">
-						<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
-						<span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
-					</span>)
-				</div>
-				<input type="button" ng-click="uploadFile()" value="Upload" />
-				<div ng-show="progressVisible">
-					<div class="percent">{{progress}}%</div>
-					<div class="progress-bar">
-						<div class="uploaded" ng-style="{'width': progress+'%'}"></div>
-					</div>
-				</div>
+				<div>
+					
 
+					<div id="dropbox" class="dropbox" ng-class="dropClass">
+						<br><br>
+						<span>
+							{{dropText}}
+						</span>
+						<br><br>
+						<center>
+							<a href="javascript:void(0)" ng-click="fileInputClick()">
+								<button type="button" class="btn btn-default btn-flat-note"><span class="glyphicon glyphicon-search">
+								</span>
+								&nbsp Browse</button>
+							</a>
+							<input type="file" style="visibility:hidden" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
+						</center>
+					</div>
+					<br>
+					<div>
+						<center>
+							<div ng-show="files.length">
+								<div ng-repeat="file in files.slice(0)">
+									<span>{{file.webkitRelativePath || file.name}}</span>
+									(<span ng-switch="file.size > 1024*1024">
+									<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+									<span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+									</span>)
+								</div>
+							<br>
+							<button type="button" class="btn btn-default btn-flat-note" ng-click="uploadFile()">Upload</button>
+							<div ng-show="progressVisible">
+								<div class="percent">{{progress}}%</div>
+								<div class="progress-bar">
+									<div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+								</div>
+							</div>
+						</div>
+						</center>
+				</div>
 			</div>
 			<p>
 				<h3 class="disclaimer"><b>Disclaimer</b></h3>
