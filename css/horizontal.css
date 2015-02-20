@@ -4,13 +4,13 @@ body { background: #e8e8e8; }
 /* Example wrapper */
 .wrap {
 	position: relative;
-	margin: 3em 0;
+	margin: 1em 0;
 }
 
 /* Frame */
 .frame {
-	height: 250px;
-	line-height: 250px;
+	height: 100px;
+	line-height: 100px;
 	overflow: hidden;
 }
 .frame ul {
@@ -22,7 +22,7 @@ body { background: #e8e8e8; }
 }
 .frame ul li {
 	float: left;
-	width: 227px;
+	width: 100px;
 	height: 100%;
 	margin: 0 1px 0 0;
 	padding: 0;
