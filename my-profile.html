@@ -3,6 +3,7 @@
 <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="js/sly.min.js"></script>
+<script src="js/jasny-bootstrap.js"></script>
 <link href="css/card-2.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="css/sb-admin.css" rel="stylesheet">
@@ -14,6 +15,7 @@
 <link href="css/timeline.css" rel="stylesheet">
 <link href="css/plugins/morris.css" rel="stylesheet">
 <link href="css/notification-counter.css" rel="stylesheet">
+<link href="css/jasny-bootstrap.css" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -406,14 +408,20 @@
 		</div>
 		<div class="col-md-9 jumbotron" style="border:1px solid #CCCCCC;padding:20px">
 			<span style="font:italic bold 20px Arial,Helvetica,sans-serif;color:#555555">Welcome {{ user.userName }},</span>
-			<div class="container-fluid card-container">
+			<div class="container-fluid card-container" ng-show="!visUploadProgress">
 				<h3>Upload Notes & Earn Credits</h3>
+				<br>
 				<a href="javascript:void(0)" data-toggle="modal" ng-click="loadImage()" data-target="#uploadNotes">
 					<button type="button" class="btn btn-default btn-flat-note">Upload Notes</button>
 				</a>
 			</div>
 			<!-- TODO replace above container with below container when uploading -->
-			<div class="container-fluid card-container">
+			<div class="container-fluid card-container" ng-show="visUploadProgress">
+				<div class="pull-right">
+					<a href="javascript:void(0)" class="close" ng-click="visUploadProgress=!visUploadProgress" style="float: none">
+						&times;
+					</a>
+				</div>
 				<h3>Uploading your file...</h3><br>
 				<div class="container-fluid">
 					<div class="col-md-3">
@@ -427,13 +435,25 @@
 					</div>
 				</div>
 			</div>
-			<div class="container-fluid card-container">
+			<div class="container-fluid card-container upload-drop-zone" ng-show="visUploadProgress">
 				<center>
 					<h3>Drag and Drop Files</h3>
 					<h3 style="color:grey"><b>or</b></h3>
-					<button data-toggle="modal" ng-click="browseFiles()" data-target="#uploadNotes" type="button" class="btn btn-default btn-flat-note">
-						<span class="glyphicon glyphicon-search"></span>&nbsp Browse
-					</button>
+					<div class="fileinput fileinput-new" id="browseFileInput" data-provides="fileinput">
+						<span class="btn btn-default btn-flat-note btn-file cursor-pointer">
+							<span class="fileinput-new">
+								<span class="glyphicon glyphicon-search">
+								</span>
+								&nbsp Browse
+							</span>
+							<span class="fileinput-exists cursor-pointer">
+								Change
+							</span>
+							<input type="file" name="...">
+						</span>
+						<span class="fileinput-filename"></span>
+						<a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+					</div>
 				</center>
 
 			</div>
@@ -551,7 +571,7 @@
 
 						<div class="row">
 							<center>
-								<button type="button" class="btn btn-default btn-flat-note" data-dismiss="modal" ng-click="uploadNotes()"><big>&nbsp&nbspShare&nbsp&nbsp</big></button>
+								<button type="button" class="btn btn-default btn-flat-note" data-dismiss="modal" ng-click="uploadNotesDetails()"><big>&nbsp&nbspShare&nbsp&nbsp</big></button>
 							</center>
 						</div>
 
