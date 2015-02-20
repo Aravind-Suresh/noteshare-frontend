@@ -11,6 +11,7 @@ function myProfile($scope) {
 		"followingCount":"0"
 	};
 	$scope.user.notifications=[];
+	$scope.visUploadProgress = false;
 
 	for(var i=1;i<=$scope.notificationCount;i++) {
 		$scope.user.notifications.push({"textHeading":"New notification","textDescription":"Description about the notification"});
@@ -18,6 +19,13 @@ function myProfile($scope) {
 
 	$scope.uploadNotes = function() {
 		console.log('Notes uploaded');
+		//TODO : Give a popup saying that your notes has been uploaded.
+		$scope.visUploadProgress = false;
+	}
+	$scope.uploadNotesDetails = function() {
+		console.log('Notes details uploaded');
+		//TODO : Do some validation here.
+		$scope.visUploadProgress = true;
 	}
 	$scope.displayModalUploadNotes = function() {
 		$('#uploadNotes').modal('show');
