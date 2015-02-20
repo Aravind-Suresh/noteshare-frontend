@@ -424,18 +424,23 @@
 				</div>
 				<h3>Uploading your file...</h3><br>
 				<div class="container-fluid">
-					<div class="col-md-3">
-						<img src="default-profile-pic.jpg" alt="File" style="width:25px;height:25px;margin-right:30px"></img>
-						File name
-					</div>
-					<div class="col-md-6 progress">
-						<div class="row progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="70"
-						aria-valuemin="0" aria-valuemax="100" style="width:70%">
-						70%
+					<div ng-repeat="file in files track by $index">
+						<div class="row">
+							<div class="col-md-3">
+								<img src="default-profile-pic.jpg" alt="File" style="width:25px;height:25px;margin-right:30px"></img>
+								{{file.fileName}}
+							</div>
+							<div class="col-md-6 progress">
+								<div class="row progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="70"
+								aria-valuemin="0" aria-valuemax="100" style="width:70%">
+								70%
+							</div>
+							<div class="col-md-3"></div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="container-fluid card-container upload-drop-zone" ng-show="visUploadProgress">
+			<div class="container-fluid card-container" ng-show="visUploadProgress">
 				<center>
 					<h3>Drag and Drop Files</h3>
 					<h3 style="color:grey"><b>or</b></h3>
@@ -446,13 +451,14 @@
 								</span>
 								&nbsp Browse
 							</span>
-							<span class="fileinput-exists cursor-pointer">
+							<span class="fileinput-exists">
 								Change
 							</span>
 							<input type="file" name="...">
-						</span>
-						<span class="fileinput-filename"></span>
-						<a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+						</span>&nbsp&nbsp&nbsp
+						<span class="fileinput-filename"></span>&nbsp&nbsp&nbsp
+						<a href="javascript:void(0)" id="removeSelectedFile" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>&nbsp&nbsp&nbsp
+						<a href="javascript:void(0)" style="color:black;" class="fileinput-exists" ng-click="startUpload()"><i class="fa fa-upload fa-1x"></i></a>
 					</div>
 				</center>
 

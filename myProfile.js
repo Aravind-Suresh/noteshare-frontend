@@ -12,6 +12,7 @@ function myProfile($scope) {
 	};
 	$scope.user.notifications=[];
 	$scope.visUploadProgress = false;
+	$scope.files = [];
 
 	for(var i=1;i<=$scope.notificationCount;i++) {
 		$scope.user.notifications.push({"textHeading":"New notification","textDescription":"Description about the notification"});
@@ -19,8 +20,14 @@ function myProfile($scope) {
 
 	$scope.uploadNotes = function() {
 		console.log('Notes uploaded');
+		//Will be called when progress bar reaches 100%
 		//TODO : Give a popup saying that your notes has been uploaded.
 		$scope.visUploadProgress = false;
+	}
+	$scope.startUpload = function() {
+		console.log('Started uploading');
+		$scope.files.push({"fileName":$('.fileinput-filename').text()});
+		$('#removeSelectedFile').trigger('click');
 	}
 	$scope.uploadNotesDetails = function() {
 		console.log('Notes details uploaded');
