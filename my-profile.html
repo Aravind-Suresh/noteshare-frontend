@@ -289,6 +289,18 @@ input[type="text"] {
 	border:1px solid #BBBBBB;
 	background-color:#DDDDDD;
 }
+.side-chevron {
+	width:2%;
+	padding:0;
+	margin-top:3.5%;
+	cursor:pointer;
+}
+.list-view {
+	width:96%
+}
+.grey-icon {
+	color:grey;
+}
 table { border-collapse: collapse; }
 .percent {
 	position: absolute; width: 300px; height: 14px; z-index: 1; text-align: center; font-size: 0.8em; color: white;
@@ -328,7 +340,6 @@ table { border-collapse: collapse; }
 .dropbox.over {
 	background-color: #bfb;
 }
-
 </style>
 
 <html ng-app="">
@@ -560,39 +571,51 @@ table { border-collapse: collapse; }
 				<h3 class="disclaimer"><b>Disclaimer</b></h3>
 				<big class="disclaimer">The file you are uploading is now of complete rights for NoteShare Ltd.,
 					and you are accepting that your file will be downloaded for free by any user.</big>
-				</p>
-			</div>
-			<div class="container-fluid card-container">
-				<!--<p style="font-size:25px;color:#339999">Recent Downloads</p>-->
-				<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Downloads</div>
-				<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
-
-			</div>
-			<div class="container-fluid card-container">
-				<!--<p style="font-size:25px;color:#339999">Recent Uploads</p>-->
-				<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Uploads</div>
-				<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
-				<div class="col-md-12 files-list-container">
-					<div class="wrap">
-						<!--<h2>Centered <small>- activated or middle item is centered when possible</small></h2>-->
-						<div class="scrollbar">
-							<div class="handle" style="transform: translateZ(0px) translateX(0px); width: 190px;">
-								<div class="mousearea"></div>
-							</div>
+			</p>
+		</div>
+		<div class="container-fluid card-container">
+			<!--<p style="font-size:25px;color:#339999">Recent Downloads</p>-->
+			<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Downloads</div>
+			<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
+			
+		</div>
+		<div class="container-fluid card-container">
+			<!--<p style="font-size:25px;color:#339999">Recent Uploads</p>-->
+			<div class="col-md-4" style="font-size:25px;color:#339999;padding-left:0px">Recent Uploads</div>
+			<div class="col-md-8" style="font-size:20px;text-align:right">Sort:	Oldest - Newest</div>
+			<div class="col-md-12 wrap files-list-container">
+				<!--<div class="col-md-1 side-chevron">
+					<center>
+						<i class="fa fa-chevron-left fa-3x grey-icon prev"></i>
+					</center>
+				</div>-->
+				<div class="col-md-10 list-view">
+					<!--<h2>Centered <small>- activated or middle item is centered when possible</small></h2>-->
+					<!--<div class="scrollbar">
+						<div class="handle" style="transform: translateZ(0px) translateX(0px); width: 190px;">
+							<div class="mousearea"></div>
 						</div>
-						<div class="frame" id="centered">
-							<ul class="clearfix" style="transform: translateZ(0px); width: 6840px;">
-								<li class="active">0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
-								<li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>
-								<li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li>
-								<li>28</li><li>29</li>
-							</ul>
-						</div>
-					<!--<div class="controls center">
-						<button class="btn prev"><i class="icon-chevron-left"></i> prev</button>
-						<button class="btn next">next <i class="icon-chevron-right"></i></button>
 					</div>-->
+					<div class="controls center">
+						<button class="btn prev"><i class="icon-chevron-left"></i> prev</button>
+					</div>
+					<div class="frame" id="centered">
+						<ul class="clearfix" style="transform: translateZ(0px); width: 6840px;">
+							<li class="active">0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
+							<li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>
+							<li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li>
+							<li>28</li><li>29</li>
+						</ul>
+					</div>
+					<div class="controls center">
+						<button class="btn next">next <i class="icon-chevron-right"></i></button>
+					</div>
 				</div>
+				<!--<div class="col-md-1 side-chevron">
+					<center>
+						<i class="fa fa-chevron-right fa-3x grey-icon next"></i>
+					</center>
+				</div>-->
 			</div>
 		</div>
 	</div>
