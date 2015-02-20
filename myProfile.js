@@ -118,6 +118,14 @@ function myProfile($scope) {
       });
     };
 
+    $scope.prevUpload = function() {
+         $('#prevUploadHidden').click();
+    }
+
+    $scope.nextUpload = function() {
+         $('#nextUploadHidden').click();
+    }
+
     $scope.uploadFile = function() {
         var fd = new FormData()
         for (var i in $scope.files) {
