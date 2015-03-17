@@ -2,6 +2,8 @@ function myProfile($scope) {
 	// TODO get info from backend and populate user class object
 	$scope.notificationCount = 7;
 	console.log('started');
+    $scope.visDashboard = !true;
+    $scope.visMyUploads = !false;
 	$scope.user = {
 		"userName":"Aravind Shankar",
 		"uploadsCount":"50",

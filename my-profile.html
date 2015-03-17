@@ -88,7 +88,7 @@
 .profile-pic {
 	border: 1px solid;
 	border-color: black;
-	width: 100%;
+	width: 263px;
 }
 .fixed-top-nav {
 	position: fixed !important;
@@ -340,6 +340,27 @@ table { border-collapse: collapse; }
 .dropbox.over {
 	background-color: #bfb;
 }
+.book-preview
+{
+	-moz-box-shadow: 0 0 0px #349a9a;
+	-webkit-box-shadow: 0 0 0px #349a9a;
+	box-shadow: 0px 0px 0px #349a9a;
+	border-radius: 4px;
+	border: 1px solid #349a9a;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+.book-preview:hover
+{
+	-moz-box-shadow: 0 0 40px #222;
+	-webkit-box-shadow: 0 0 40px #222;
+	box-shadow: 0px 0px 40px #222;
+	border-radius: 2px;
+	border: 1px solid transparent;
+	padding: 5px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
 </style>
 
 <html ng-app="">
@@ -458,7 +479,7 @@ table { border-collapse: collapse; }
 			</div>
 			<div class="row separator-small"></div>
 			<div class="row">
-				<div class="col-lg-10 nopadding">
+				<div class="col-lg-10 nopadding" ng-click="visDashboard=false;visMyUploads=true;">
 					<div class="nav-link">
 						&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Uploads
 					</div>
@@ -473,7 +494,26 @@ table { border-collapse: collapse; }
 				</div>
 			</div>
 		</div>
-		<div class="col-md-9 jumbotron" style="border:1px solid #CCCCCC;padding:20px">
+		<div class="col-md-9 jumbotron" style="border:1px solid #CCCCCC;padding:20px" ng-show="visMyUploads">
+
+			<div class="container-fluid card-container" >
+				<div class="row">
+					<center>
+						<div class="col-lg-2">
+							<img class="book-preview" src="prev-0.jpg" width="120" height="140"></img>
+							<div class="row">
+								<big>Harry Potter 6</big>
+								<br>
+								<b>4.7/5.0</b>
+							</div>
+						</div>
+					</center>
+				</div>
+			</div>
+
+
+		</div>
+		<div class="col-md-9 jumbotron" style="border:1px solid #CCCCCC;padding:20px" ng-show="visDashboard">
 			<span style="font:italic bold 20px Arial,Helvetica,sans-serif;color:#555555">Welcome {{ user.userName }},</span>
 			<div class="container-fluid card-container" ng-show="!visUploadProgress">
 				<h3>Upload Notes & Earn Credits</h3>
